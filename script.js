@@ -89,7 +89,7 @@ const observer = new IntersectionObserver((entries) => {
 // Initialize animations
 function initializeAnimations() {
     const animatedElements = document.querySelectorAll(
-        '.overview-card, .comparison-card, .customization-card, .practice-card, .tool-card, .ai-capability, .vision-card, .roadmap-step, .impact-stat'
+        '.overview-card, .comparison-card, .customization-card, .practice-card, .tool-card, .ai-capability, .vision-card, .roadmap-step, .impact-stat, .feature-category, .benefit-item, .datadog-hero-card'
     );
     
     animatedElements.forEach(el => {
@@ -200,7 +200,9 @@ function initializeRoadmapProgress() {
 // Tool comparison interactive features
 function initializeToolComparison() {
     const toolCards = document.querySelectorAll('.tool-card');
+    const featureCategories = document.querySelectorAll('.feature-category');
     
+    // Handle legacy tool cards
     toolCards.forEach(card => {
         card.addEventListener('click', () => {
             // Remove active class from all cards
@@ -211,6 +213,24 @@ function initializeToolComparison() {
             
             // Show comparison modal or detailed view
             showToolDetails(card);
+        });
+    });
+    
+    // Handle Datadog feature categories
+    featureCategories.forEach(category => {
+        category.addEventListener('click', () => {
+            // Add highlight effect
+            category.style.background = 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)';
+            category.style.borderLeft = '4px solid var(--primary-color)';
+            
+            // Show feature details
+            showFeatureCategoryDetails(category);
+            
+            // Reset highlight after animation
+            setTimeout(() => {
+                category.style.background = '';
+                category.style.borderLeft = '';
+            }, 2000);
         });
     });
 }
@@ -251,6 +271,60 @@ function showToolDetails(toolCard) {
             document.body.removeChild(modal);
         }
     });
+}
+
+// Show detailed feature category information for Datadog
+function showFeatureCategoryDetails(categoryCard) {
+    const categoryName = categoryCard.querySelector('h4').textContent;
+    const features = Array.from(categoryCard.querySelectorAll('.feature-list li')).map(item => item.textContent);
+    
+    // Create modal for Datadog feature details
+    const modal = document.createElement('div');
+    modal.className = 'tool-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Datadog On-Call: ${categoryName}</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="datadog-feature-details">
+                    <ul>
+                        ${features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    <div class="feature-highlight">
+                        <p><strong>Key Advantage:</strong> ${getCategoryAdvantage(categoryName)}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Close modal functionality
+    const closeBtn = modal.querySelector('.modal-close');
+    closeBtn.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+        }
+    });
+}
+
+// Get category-specific advantages
+function getCategoryAdvantage(categoryName) {
+    const advantages = {
+        'Smart Alerting': 'Deep integration with Datadog observability provides unmatched context in every alert, enabling faster resolution times.',
+        'Team Collaboration': 'Streamlined incident response workflows with automated escalation and real-time collaboration tools.',
+        'Observability Integration': 'Native platform integration eliminates data silos and provides comprehensive system visibility.',
+        'Analytics & Insights': 'Advanced analytics help teams optimize their incident response processes and prevent future issues.'
+    };
+    
+    return advantages[categoryName.replace(/.*\s/, '')] || 'Comprehensive incident management capabilities designed for modern DevOps teams.';
 }
 
 // Statistics counter animation
@@ -749,7 +823,32 @@ style.textContent = `
     }
     
     .dark-mode .hero {
-        background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        background: linear-gradient(135deg, #4c1d87 0%, #3c1361 100%);
+    }
+    
+    .datadog-feature-details ul {
+        margin-bottom: 1rem;
+    }
+    
+    .datadog-feature-details li {
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+        background: #f8fafc;
+        border-radius: 0.25rem;
+        border-left: 3px solid var(--primary-color);
+    }
+    
+    .feature-highlight {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+    }
+    
+    .feature-highlight p {
+        margin: 0;
+        font-style: italic;
     }
 `;
 
