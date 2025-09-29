@@ -89,7 +89,7 @@ const observer = new IntersectionObserver((entries) => {
 // Initialize animations
 function initializeAnimations() {
     const animatedElements = document.querySelectorAll(
-        '.overview-card, .comparison-card, .customization-card, .practice-card, .tool-card, .ai-capability, .vision-card, .roadmap-step, .impact-stat, .feature-category, .benefit-item, .datadog-hero-card'
+        '.overview-card, .comparison-card, .customization-card, .practice-card, .tool-card, .ai-capability, .vision-card, .roadmap-step, .impact-stat, .feature-category, .benefit-item, .datadog-hero-card, .author-card'
     );
     
     animatedElements.forEach(el => {

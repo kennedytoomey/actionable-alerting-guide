@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css">
 
     <!-- Datadog RUM SDK -->
     <script>
@@ -39,7 +40,7 @@
         <div class="nav-container">
             <div class="nav-brand">
                 <i class="fas fa-bell"></i>
-                <span>Alerting Guide</span>
+                <span>Guide</span>
             </div>
             <div class="nav-menu" id="nav-menu">
                 <a href="#overview" class="nav-link">Overview</a>
@@ -75,9 +76,17 @@
                     <span class="stat-label">Research Sources</span>
                 </div>
             </div>
-            <button class="cta-button" onclick="scrollToSection('overview')">
-                Start Learning <i class="fas fa-arrow-right"></i>
-            </button>
+            <div class="cta-buttons">
+                <button class="cta-button primary" onclick="scrollToSection('overview')">
+                    Start Learning <i class="fas fa-arrow-right"></i>
+                </button>   
+            </div>
+            <br>
+            <div class="cta-buttons"></div>
+                <a href="presentation-slides.pdf" target="_blank" class="cta-button secondary">
+                    View Slides
+                </a>
+            </div>
         </div>
     </header>
 
@@ -265,43 +274,27 @@
                                         <th>Channel</th>
                                         <th>Urgency</th>
                                         <th>Interruptiveness</th>
-                                        <th>Rich Media</th>
-                                        <th>Two-Way Actions</th>
                                         <th>Ideal Use Case</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><i class="fas fa-envelope"></i> Email</td>
-                                        <td><span class="urgency low">Low-Medium</span></td>
-                                        <td><span class="interrupt low">Low</span></td>
-                                        <td><span class="feature yes">High</span></td>
-                                        <td><span class="feature yes">Yes</span></td>
-                                        <td>Summary reports, audit trails</td>
-                                    </tr>
-                                    <tr>
                                         <td><i class="fas fa-sms"></i> SMS/Phone</td>
-                                        <td><span class="urgency high">High-Critical</span></td>
+                                        <td><span class="urgency high">Critical</span></td>
                                         <td><span class="interrupt high">High</span></td>
-                                        <td><span class="feature no">Low</span></td>
-                                        <td><span class="feature yes">Yes</span></td>
                                         <td>Critical failures, urgent on-call</td>
                                     </tr>
                                     <tr>
                                         <td><i class="fas fa-mobile-alt"></i> Push</td>
-                                        <td><span class="urgency medium">Low-High</span></td>
-                                        <td><span class="interrupt medium">Medium-High</span></td>
-                                        <td><span class="feature yes">High</span></td>
-                                        <td><span class="feature yes">Yes</span></td>
+                                        <td><span class="urgency medium">High</span></td>
+                                        <td><span class="interrupt medium">Medium</span></td>
                                         <td>Real-time updates, mobile alerts</td>
                                     </tr>
                                     <tr>
-                                        <td><i class="fas fa-comments"></i> Chat</td>
-                                        <td><span class="urgency medium">Low-High</span></td>
-                                        <td><span class="interrupt medium">Low-Medium</span></td>
-                                        <td><span class="feature yes">High</span></td>
-                                        <td><span class="feature yes">Yes</span></td>
-                                        <td>Team collaboration, incident response</td>
+                                        <td><i class="fas fa-envelope"></i> Email</td>
+                                        <td><span class="urgency low">Low</span></td>
+                                        <td><span class="interrupt low">Low</span></td>
+                                        <td>Summary reports, audit trails</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -594,6 +587,31 @@
                 <div class="footer-section">
                     <h4>About This Guide</h4>
                     <p>Interactive companion to "Finding what's important: Actionable, Automated and Accurate Alerting" presentation from DevOpsDays Philadelphia 2025, designed to help teams implement effective alert management strategies.</p>
+                    <div class="footer-slides-link">
+                        <a href="presentation-slides.pdf" target="_blank" class="slides-link">
+                            <i class="fas fa-file-pdf"></i> Download Presentation Slides
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section" style="text-align: center">
+                    <h4>Authors</h4>
+                    <div class="footer-authors">
+                        <div class="footer-author">
+                            <strong>Kennedy Toomey</strong>
+                            <br>
+                            <a href="https://linkedin.com/in/kennedy-toomey" target="_blank">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                        </div>
+                        <div class="footer-author">
+                            <strong>Max Saltonstall</strong>
+                            <br>
+                            <a href="https://linkedin.com/in/maxsaltonstall" target="_blank">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="footer-section" style="text-align: right">
                     <h4>Quick Links</h4>
